@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select User</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="user-types">
+    <ion-radio-group *ngIf="userTypes && userTypes.length > 0"  [(ngModel)]="selectedUserType" [ngModelOptions]="{'standalone': true}">
+      <ion-item detail="false" *ngFor="let userType of userTypes">
+        <ion-radio [value]="userType.id"></ion-radio>
+        <ion-label>{{userType.type}}</ion-label>
+      </ion-item>
+      <!-- <ion-item detail="false">
+        <ion-radio value="1"></ion-radio>
+        <ion-label>Customer</ion-label>
+      </ion-item>
+      <ion-item detail="false">
+        <ion-radio value="2"></ion-radio>
+        <ion-label>Dealer</ion-label>
+      </ion-item>
+      <ion-item detail="false">
+        <ion-radio value="3"></ion-radio>
+        <ion-label>Delivery</ion-label>
+      </ion-item> -->
+    </ion-radio-group>
+  </ion-list>
+  <ion-list>
+    <ion-item lines="none" detail="false" text-center type="button" (click)="goToLogin()" color="primary">
+      <ion-label>Continue</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

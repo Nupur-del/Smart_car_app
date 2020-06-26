@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/dashboard'"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Feedback</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="feedbackForm" (ngSubmit)="onFeedbackSubmit()">
+    <ion-item detail="false">
+      <ion-label position="floating">Order Id</ion-label>
+      <ion-select placeholder="Select Order" required formControlName="order_id" okText="OK" cancelText="Cancel">
+        <ion-select-option *ngFor="let order of orders" [value]="order.id">{{ order.id }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="error-container" *ngIf="feedbackForm.controls['order_id'].invalid && (feedbackForm.controls['order_id'].dirty || feedbackForm.controls['order_id'].touched)">
+      <ion-text color="danger" *ngIf="feedbackForm.controls['order_id'].errors.required">Order Id is required.</ion-text>
+    </div>
+    <ion-item detail="false">
+      <p class="rate-container" text-center>
+        <ng-container *ngFor="let rs of ratingStarts">
+          <div class="icon-wrapper" (click)="rate(rs)">
+            <ion-icon [name]="rs.icon"></ion-icon>
+          </div>
+        </ng-container>
+        <span *ngIf="selectedRate && selectedRate.text">{{ selectedRate.text }}</span>
+      </p>
+    </ion-item>
+    <p text-center>
+      <ion-button type="submit" color="primary">Submit</ion-button>
+    </p>
+  </form>
+  <!-- case UI for Thank you for your feedback -->
+</ion-content>
+  

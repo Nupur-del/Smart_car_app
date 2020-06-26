@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
+    <ion-item detail="false">
+      <ion-label position="floating">Name</ion-label>
+      <ion-input type="text" formControlName="name" required></ion-input>
+    </ion-item>
+    <div class="error-container"
+      *ngIf="editForm.controls['name'].invalid && (editForm.controls['name'].dirty || editForm.controls['name'].touched)">
+      <ion-text color="danger" *ngIf="editForm.controls['name'].errors.required">Name is required.</ion-text>
+    </div>
+    <ion-item detail="false" class="gender">
+      <!-- <ion-label position="floating">Gender</ion-label>
+      <ion-input type="text" formControlName="gender"></ion-input> -->
+      <!-- <ion-input type="text" formControlName="gender" required></ion-input> -->
+      <ion-radio-group formControlName="gender">
+        <ion-list-header>
+          Gender
+        </ion-list-header>
+        <ion-grid no-padding>
+          <ion-row>
+            <ion-col>
+              <ion-item [lines]="'none'" detail="false">
+                <ion-radio [value]="1" required></ion-radio>
+                <ion-label>Female</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item [lines]="'none'" detail="false">
+                <ion-radio [value]="2" required></ion-radio>
+                <ion-label>Male</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-radio-group>
+    </ion-item>
+    <ion-item detail="false">
+      <ion-label position="floating">Address</ion-label>
+      <ion-input type="text" formControlName="address" required></ion-input>
+    </ion-item>
+    <div class="error-container"
+      *ngIf="editForm.controls['address'].invalid && (editForm.controls['address'].dirty || editForm.controls['address'].touched)">
+      <ion-text color="danger" *ngIf="editForm.controls['address'].errors.required">Address is required.</ion-text>
+    </div>
+    <p text-center>
+      <ion-button type="submit" color="primary">Submit</ion-button>
+    </p>
+  </form>
+</ion-content>

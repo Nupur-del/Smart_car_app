@@ -1,0 +1,241 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ng-container *ngIf="userType == '1' || userType == '2' || userType == '3'">
+    <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+      <ng-container *ngIf="userType == '1'">
+        <ion-item detail="false">
+          <ion-label position="floating">Name</ion-label>
+          <ion-input type="text" formControlName="name" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['name'].errors.required">Name is required.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="email" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['email'].errors.required">Email is required.</ion-text>
+          <ion-text color="danger" *ngIf="registerForm.controls['email'].errors.email">Invalid email.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Mobile</ion-label>
+          <ion-input type="tel" formControlName="mobile" required maxlength="10"></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['mobile'].invalid && (registerForm.controls['mobile'].dirty || registerForm.controls['mobile'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['mobile'].errors.required">Mobile is required.</ion-text>
+          <ion-text color="danger" *ngIf="registerForm.controls['mobile'].errors.pattern">Invalid mobile number.</ion-text>
+        </div>
+        <ion-item detail="false" class="gender">
+          <!-- <ion-label position="floating">Gender</ion-label>
+          <ion-input type="text" formControlName="gender"></ion-input> -->
+          <!-- <ion-input type="text" formControlName="gender" required></ion-input> -->
+          <ion-radio-group formControlName="gender">
+            <ion-list-header>
+              Gender
+            </ion-list-header>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col>
+                  <ion-item [lines]="'none'" detail="false">
+                    <ion-radio [value]="1" required></ion-radio>
+                    <ion-label>Female</ion-label>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item [lines]="'none'" detail="false">
+                    <ion-radio [value]="2" required></ion-radio>
+                    <ion-label>Male</ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-radio-group>
+        </ion-item>
+        <ion-item detail="false">
+          <ion-label position="floating">Address</ion-label>
+          <ion-input type="text" formControlName="address" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['address'].invalid && (registerForm.controls['address'].dirty || registerForm.controls['address'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['address'].errors.required">Address is required.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['password'].errors.required">Password is required.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input type="password" formControlName="confirm_password" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['confirm_password'].invalid && (registerForm.controls['confirm_password'].dirty || registerForm.controls['confirm_password'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['confirm_password'].errors?.required">Confirm password is required.</ion-text>
+          <ion-text color="danger" *ngIf="registerForm.controls['confirm_password'].errors?.passwords_mismatched">Passwords do not match.</ion-text>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="userType == '2'">
+        <ion-item detail="false">
+          <ion-label position="floating">Company Name</ion-label>
+          <ion-input type="text" formControlName="company_name" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['company_name'].invalid && (registerForm.controls['company_name'].dirty || registerForm.controls['company_name'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['company_name'].errors.required">Company Name is required.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="email" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['email'].errors.required">Email is required.</ion-text>
+          <ion-text color="danger" *ngIf="registerForm.controls['email'].errors.email">Invalid email.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Contact No.</ion-label>
+          <ion-input type="tel" formControlName="contact_no" required maxlength="10"></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['contact_no'].invalid && (registerForm.controls['contact_no'].dirty || registerForm.controls['contact_no'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['contact_no'].errors.required">Contact number is required.</ion-text>
+          <ion-text color="danger" *ngIf="registerForm.controls['contact_no'].errors.pattern">Invalid contact number.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Opening Time</ion-label>
+          <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" formControlName="opening_time" required></ion-datetime>
+          <!-- <ion-input type="text" formControlName="opening_time" required maxlength="10"></ion-input> -->
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['opening_time'].invalid && (registerForm.controls['opening_time'].dirty || registerForm.controls['opening_time'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['opening_time'].errors.required">Contact number is required.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Closing Time</ion-label>
+          <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" formControlName="closing_time" required></ion-datetime>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['closing_time'].invalid && (registerForm.controls['closing_time'].dirty || registerForm.controls['closing_time'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['closing_time'].errors.required">Contact number is required.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Address</ion-label>
+          <ion-input type="text" formControlName="address" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['address'].invalid && (registerForm.controls['address'].dirty || registerForm.controls['address'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['address'].errors.required">Address is required.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">City</ion-label>
+          <ion-input type="text" formControlName="city" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['city'].invalid && (registerForm.controls['city'].dirty || registerForm.controls['city'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['city'].errors.required">City is required.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Pincode</ion-label>
+          <ion-input type="text" formControlName="pincode" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['pincode'].invalid && (registerForm.controls['pincode'].dirty || registerForm.controls['pincode'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['pincode'].errors.required">Pincode is required.</ion-text>
+          <!-- <ion-text color="danger" *ngIf="registerForm.controls['contact_no'].errors.pattern">Invalid pincode.</ion-text> -->
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['password'].errors.required">Password is required.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input type="password" formControlName="confirm_password" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['confirm_password'].invalid && (registerForm.controls['confirm_password'].dirty || registerForm.controls['confirm_password'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['confirm_password'].errors?.required">Confirm password is required.</ion-text>
+          <ion-text color="danger" *ngIf="registerForm.controls['confirm_password'].errors?.passwords_mismatched">Passwords do not match.</ion-text>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="userType == '3'">
+        <ion-item detail="false">
+          <ion-label position="floating">Name</ion-label>
+          <ion-input type="text" formControlName="name" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['name'].errors.required">Name is required.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="email" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['email'].errors.required">Email is required.</ion-text>
+          <ion-text color="danger" *ngIf="registerForm.controls['email'].errors.email">Invalid email.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Contact No</ion-label>
+          <ion-input type="tel" formControlName="contact_no" required maxlength="10"></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['contact_no'].invalid && (registerForm.controls['contact_no'].dirty || registerForm.controls['contact_no'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['contact_no'].errors.required">Contact No. is required.</ion-text>
+          <ion-text color="danger" *ngIf="registerForm.controls['contact_no'].errors.pattern">Invalid contact number.</ion-text>
+        </div>
+        <ion-item detail="false" class="gender">
+          <!-- <ion-label position="floating">Gender</ion-label>
+          <ion-input type="text" formControlName="gender"></ion-input> -->
+          <!-- <ion-input type="text" formControlName="gender" required></ion-input> -->
+          <ion-radio-group formControlName="gender">
+            <ion-list-header>
+              Gender
+            </ion-list-header>
+            <ion-grid no-padding>
+              <ion-row>
+                <ion-col>
+                  <ion-item [lines]="'none'" detail="false">
+                    <ion-radio [value]="1" required></ion-radio>
+                    <ion-label>Female</ion-label>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                  <ion-item [lines]="'none'" detail="false">
+                    <ion-radio [value]="2" required></ion-radio>
+                    <ion-label>Male</ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-radio-group>
+        </ion-item>
+        <ion-item detail="false">
+          <ion-label position="floating">Address</ion-label>
+          <ion-input type="text" formControlName="address" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['address'].invalid && (registerForm.controls['address'].dirty || registerForm.controls['address'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['address'].errors.required">Address is required.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['password'].errors.required">Password is required.</ion-text>
+        </div>
+        <ion-item detail="false">
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input type="password" formControlName="confirm_password" required></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.controls['confirm_password'].invalid && (registerForm.controls['confirm_password'].dirty || registerForm.controls['confirm_password'].touched)">
+          <ion-text color="danger" *ngIf="registerForm.controls['confirm_password'].errors?.required">Confirm password is required.</ion-text>
+          <ion-text color="danger" *ngIf="registerForm.controls['confirm_password'].errors?.passwords_mismatched">Passwords do not match.</ion-text>
+        </div>
+      </ng-container>
+      <p text-center>
+        <ion-button type="submit" color="primary">Submit</ion-button>
+      </p>
+    </form>
+  </ng-container>
+</ion-content>

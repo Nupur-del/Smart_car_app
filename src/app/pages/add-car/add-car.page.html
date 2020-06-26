@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/dashboard'"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Car</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="addCarForm" (ngSubmit)="onAddCarSubmit()">
+    <ion-item detail="false">
+      <ion-label position="floating">Model</ion-label>
+      <ion-input type="text" formControlName="model" required></ion-input>
+    </ion-item>
+    <div class="error-container" *ngIf="addCarForm.controls['model'].invalid && (addCarForm.controls['model'].dirty || addCarForm.controls['model'].touched)">
+      <ion-text color="danger" *ngIf="addCarForm.controls['model'].errors.required">Model is required.</ion-text>
+    </div>
+    <ion-item detail="false">
+      <ion-label position="floating">Registration Number</ion-label>
+      <ion-input type="text" formControlName="registration_number" required></ion-input>
+    </ion-item>
+    <div class="error-container" *ngIf="addCarForm.controls['registration_number'].invalid && (addCarForm.controls['registration_number'].dirty || addCarForm.controls['registration_number'].touched)">
+      <ion-text color="danger" *ngIf="addCarForm.controls['registration_number'].errors.required">Registration number is required.</ion-text>
+      <!-- <ion-text color="danger" *ngIf="addCarForm.controls['registration_number'].errors.email">Invalid email.</!-->
+    </div>
+    <p text-center>
+      <ion-button type="submit" color="primary">Submit</ion-button>
+    </p>
+  </form>
+</ion-content>

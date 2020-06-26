@@ -1,0 +1,11 @@
+div.facilities{ //background image or color can be added.
+    display: flex;
+    width: 100%;
+    min-height: 150px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: url(/assets/car1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

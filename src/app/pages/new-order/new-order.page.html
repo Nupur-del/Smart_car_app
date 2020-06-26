@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/dashboard'"></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="newOrderForm" (ngSubmit)="onNewOrderSubmit()">
+    <ion-item detail="false">
+      <ion-label position="stacked">Car</ion-label>
+      <!-- <ion-input type="text" formControlName="dealer" required></ion-input> -->
+      <ion-select placeholder="Select Car" formControlName="car" okText="OK" cancelText="Cancel">
+        <ion-select-option *ngFor="let car of cars" [value]="car.id">{{car.model}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="error-container" *ngIf="newOrderForm.controls['car'].invalid && (newOrderForm.controls['car'].dirty || newOrderForm.controls['car'].touched)">
+      <ion-text color="danger" *ngIf="newOrderForm.controls['car'].errors.required">Car is required.</ion-text>
+    </div>
+    <ion-item detail="false">
+      <ion-label position="stacked">Dealer</ion-label>
+      <!-- <ion-input type="text" formControlName="dealer" required></ion-input> -->
+      <ion-select placeholder="Select Dealer" formControlName="dealer" okText="OK" cancelText="Cancel" (ionChange)="onDealerChange($event)">
+        <ion-select-option *ngFor="let dealer of dealers" [value]="dealer.id">{{dealer.company_name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="error-container" *ngIf="newOrderForm.controls['dealer'].invalid && (newOrderForm.controls['dealer'].dirty || newOrderForm.controls['dealer'].touched)">
+      <ion-text color="danger" *ngIf="newOrderForm.controls['dealer'].errors.required">Dealer is required.</ion-text>
+    </div>
+    <ion-item detail="false">
+      <ion-label position="stacked">Service</ion-label>
+      <!-- <ion-input type="text" formControlName="service" required></ion-input> -->
+      <ion-select placeholder="Select Service" formControlName="service" okText="OK" cancelText="Cancel" (ionChange)="onServiceChange($event)">
+        <ion-select-option *ngFor="let service of services" [value]="service.id">{{service.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="error-container" *ngIf="newOrderForm.controls['service'].invalid && (newOrderForm.controls['service'].dirty || newOrderForm.controls['service'].touched)">
+      <ion-text color="danger" *ngIf="newOrderForm.controls['service'].errors.required">Service is required.</ion-text>
+    </div>
+    <ion-item detail="false">
+      <ion-label position="stacked">Amount</ion-label>
+      <ion-input type="text" formControlName="amount" placeholder="0.00" readonly></ion-input>
+    </ion-item>
+    <p text-center>
+      <ion-button type="submit" color="primary">Submit</ion-button>
+    </p>
+  </form>
+</ion-content>

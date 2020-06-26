@@ -1,0 +1,7 @@
+<ion-list>
+  <ion-item lines="full" detail="false" type="button"*ngFor="let option of options" (click)="option.handler()" [disabled]="option.disabled">
+    <ion-label>
+      {{ option.title }}
+    </ion-label>
+  </ion-item>
+</ion-list>

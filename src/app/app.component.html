@@ -1,0 +1,137 @@
+<ion-app>
+  <!-- <ion-split-pane>
+  </ion-split-pane> -->
+  <ion-menu>
+    <ion-header>
+      <ion-toolbar>
+        <!-- <ion-title> Car Mechanics </ion-title> -->
+        <ion-grid padding>
+          <ion-row>
+            <!-- <ion-col size="4" no-padding [routerDirection]="'root'" [routerLink]="['/home']">
+              <ion-img src="/assets/icon/logo.png"></ion-img>
+            </ion-col> -->
+            <ion-col size="12" no-padding>
+              <ion-title>Car Mechanics</ion-title>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list *ngIf="!isLoggedIn">
+        <ion-menu-toggle>
+          <ion-item [routerDirection]="'root'" [routerLink]="'/login'">
+            <ion-label>
+              Login
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerDirection]="'root'" [routerLink]="'/register'">
+            <ion-label>
+              Register
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+      <ion-list *ngIf="isLoggedIn && userType == '1'">
+        <ion-menu-toggle>
+          <ion-item>
+            <ion-label>
+              My Cars
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item>
+            <ion-label>
+              My Orders
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerDirection]="'forward'" [routerLink]="'/new-order'">
+            <ion-label>
+              New Order
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerDirection]="'forward'" [routerLink]="'/add-car'">
+            <ion-label>
+              Add Car
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerDirection]="'forward'" [routerLink]="'/track-order'">
+            <ion-label>
+              Track Order
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerDirection]="'forward'" [routerLink]="'/feedback'">
+            <ion-label>
+              Feedback
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item (click)="onEditProfile()">
+            <ion-label>
+              Edit Profile
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item (click)="onLogout()">
+            <ion-label>
+              Log Out
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+      <ion-list *ngIf="isLoggedIn && userType == '2'">
+        <ion-menu-toggle>
+          <ion-item [routerDirection]="'forward'" [routerLink]="'/view-orders'">
+            <ion-label>
+              View Orders
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerDirection]="'forward'" [routerLink]="'/view-feedbacks'">
+            <ion-label>
+              Feedbacks
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item (click)="onLogout()">
+            <ion-label>
+              Log Out
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+      <ion-list *ngIf="isLoggedIn && userType == '3'">
+        <ion-menu-toggle>
+          <ion-item [routerDirection]="'forward'" [routerLink]="'/view-orders'">
+            <ion-label>
+              View Orders
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item (click)="onLogout()">
+            <ion-label>
+              Log Out
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
+</ion-app>

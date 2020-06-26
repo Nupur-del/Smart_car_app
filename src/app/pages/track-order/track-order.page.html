@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/dashboard'"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Track Order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="orderStatusForm" (ngSubmit)="onOrderSubmit()">
+    <ion-item detail="false">
+      <ion-label position="floating">Order Id</ion-label>
+      <!-- <ion-input type="text" formControlName="order_id" required></ion-input> -->
+      <ng-container *ngIf="orders && orders.length > 0">
+        <ion-select placeholder="Select Order" formControlName="order_id" okText="OK" cancelText="Cancel">
+          <ion-select-option *ngFor="let order of orders" [value]="order.id">{{ order.id }}</ion-select-option>
+        </ion-select>
+      </ng-container>
+    </ion-item>
+    <div class="error-container" *ngIf="orderStatusForm.controls['order_id'].invalid && (orderStatusForm.controls['order_id'].dirty || orderStatusForm.controls['order_id'].touched)">
+      <ion-text color="danger" *ngIf="orderStatusForm.controls['order_id'].errors.required">Order Id is required.</ion-text>
+    </div>
+    <p text-center>
+      <ion-button type="submit" color="primary">Submit</ion-button>
+    </p>
+  </form>
+  <ion-card *ngIf="orderInfo">
+    <ion-card-header>
+      <ion-card-title>{{ orderInfo.id }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col class="ion-no-padding">
+            Status
+          </ion-col>
+          <ion-col class="ion-no-padding">
+            {{ ordStat[orderInfo.status] }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="ion-no-padding">
+            Dealer
+          </ion-col>
+          <ion-col class="ion-no-padding">
+            {{ orderInfo.dealer_id.company_name }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <!-- case UI for no order number found -->
+</ion-content>
